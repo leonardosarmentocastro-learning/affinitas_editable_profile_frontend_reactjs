@@ -1,0 +1,15 @@
+.text.-is-shadowed {
+  text-shadow: 0 2px 1px rgba(0,0,0,.3);
+}
+
+.text.-is-carmine-red {
+  color: #cb004e;
+}
+
+.text.-is-danger {
+  color: #eb4d5c !important;
+}
+
+.help.is-danger {
+  color: #eb4d5c !important;
+}

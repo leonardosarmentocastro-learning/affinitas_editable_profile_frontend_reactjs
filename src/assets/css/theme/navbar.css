@@ -1,0 +1,32 @@
+.navbar.-is-affinitas {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar.-is-affinitas > .navbar-brand > .navbar-burger.is-active span {
+  background-color: #007ea1 !important;
+}
+
+.navbar-link::after {
+  border-color: #007ea1 !important;
+}
+
+.navbar-dropdown a.navbar-item.is-active {
+  color: #007ea1 !important;
+}
+
+.navbar-dropdown.positionate-below-navbar {
+  top: calc(100% + 48px);
+}
+
+.-is-subnavbar {
+  justify-content: center;
+  top: 48px;
+  z-index: 2 !important;
+}
+
+.-is-subnavbar > .navbar-brand {
+  align-items: flex-end;
+  justify-content: center;
+}

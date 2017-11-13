@@ -1,0 +1,29 @@
+.input.ng-invalid.ng-dirty {
+  border-color: #ff3860 !important;
+}
+
+.input.ng-invalid.ng-dirty.is-danger:focus, .input.ng-invalid.ng-dirty.is-danger.is-focused, .input.ng-invalid.ng-dirty.is-danger:active, .input.ng-invalid.ng-dirty.is-danger.is-active {
+  box-shadow: 0 0 0 0.125em rgba(255, 56, 96, 0.25) !important;
+}
+
+.input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
+  border-color: #007ea1 !important;
+  box-shadow: 0 0 0 0.125em rgba(0, 126, 161, 0.25) !important;
+}
+
+.select select:focus, .select select.is-focused, .select select:active, .select select.is-active {
+  border-color: #007ea1 !important;
+  box-shadow: 0 0 0 0.125em rgba(0, 126, 161, 0.25) !important;
+}
+
+.select:not(.is-multiple)::after {
+  border-color: #007ea1 !important;
+}
+
+.select.-is-affinitas {
+  width: 100%;
+}
+
+.select.-is-affinitas > select {
+  width: 100%;
+}

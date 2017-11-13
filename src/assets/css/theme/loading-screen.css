@@ -1,0 +1,12 @@
+.-loading-screen {
+
+}
+
+.modal.-loading-screen > .modal-content {
+  display: flex;
+  justify-content: center;
+}
+
+.modal.-loading-screen > .modal-content > .spinner {
+  border-color: transparent;
+}

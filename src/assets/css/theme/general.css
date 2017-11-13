@@ -1,0 +1,27 @@
+html {
+  overflow-y: hidden;
+}
+
+body {
+  height: 100vh;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.valign-center {
+  align-items: center;
+}
+
+.bg-color.is-aced-aqua {
+  background-color: rgba(136, 168, 169, 0.42);
+}
+
+.bg-color.-is-shadowed {
+  box-shadow: 0 142px 130px rgba(43, 88, 118, 0.13) inset
+}
+
+.space-around {
+  justify-content: space-around;
+}

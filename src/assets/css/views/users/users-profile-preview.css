@@ -1,0 +1,11 @@
+.-users-profile-preview {
+
+}
+
+.field.-users-profile-preview > .field-label {
+  flex-grow: 2;
+}
+
+.field.-users-profile-preview > .field-body {
+  flex-grow: 4;
+}

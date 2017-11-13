@@ -1,0 +1,56 @@
+.figure > .image {
+  background-size: contain;
+  background-repeat: round;
+}
+
+.figure > .image.is-rounded {
+  border-radius: 50%;
+}
+
+.figure > .image.-is-shadowed {
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, .3));
+}
+
+.figure {
+  position: relative;
+}
+
+.figure.-is-editable:hover::before, .figure.-is-editable.-smaller:hover::before {
+  background-color: rgba(0,0,0,.7);
+  border: .25rem solid #007ea1;
+  border-radius: 50%;
+  color: white;
+  content: 'Change your profile photo';
+  cursor: pointer;
+  font-size: 12px;
+  height: 100%;
+  padding: 2.5rem 1rem 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.figure.-is-editable:hover::after, .figure.-is-editable.-smaller:hover::after {
+  color: #fff;
+  content:"\f030";
+  cursor: pointer;
+  font: normal normal normal 14px/1 FontAwesome;
+  display: inline-block;
+  left: 55px;
+  position: absolute;
+  top: 85px;
+  z-index: 1;
+}
+
+.figure.-is-editable.-smaller:hover::before {
+  content: 'Add photo';
+	font-size: 10px;
+  padding: 0.5rem 0.9rem 0;
+}
+
+.figure.-is-editable.-smaller:hover::after {
+  content:"\f067";
+  left: 25px;
+  top: 43px;
+}
