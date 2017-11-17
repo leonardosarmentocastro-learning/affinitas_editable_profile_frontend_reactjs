@@ -1,20 +1,22 @@
 /**
  * NPM packages.
  */
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider }                     from 'react-redux';
+import React                            from 'react';
+import ReactDOM                         from 'react-dom';
 import {
   BrowserRouter as Router,
   Redirect,
   Route
-} from 'react-router-dom';
+}                                       from 'react-router-dom';
+import ReduxPromise                     from 'redux-promise';
 
 /**
  * Project packages.
  */
 import FullHeightCenteredForm from './app/modules/shared/components/full-height-centered-form.component';
-// import SignUpComponent from './app/modules/sign-up/components/sign-up.component';
-// import registerServiceWorker from './app/registerServiceWorker';
+import rootReducer            from './app/modules/core/reducers/core.root.reducer';
 
 /**
  * Styles.
@@ -45,17 +47,25 @@ import './assets/css/third-party/font-awesome/fonts/fontawesome-webfont.woff2';
 import './assets/css/third-party/font-awesome/fonts/FontAwesome.otf';
 
 /**
- * Application.
+ * Create the "App" component and connect with the redux store.
  */
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const store                     = createStoreWithMiddleware(rootReducer);
+
 const App = () => (
-  <Router>
-    <div className="full-height">
-      <Route exact path='/' render={ () => (<Redirect to='/sign_up' />) } />
-      <Route exact path='/sign_up' component={FullHeightCenteredForm}/>
-    </div>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <div className="full-height">
+        <Route exact path='/' render={ () => (<Redirect to='/sign_up' />) } />
+        <Route exact path='/sign_up' component={FullHeightCenteredForm}/>
+      </div>
+    </Router>
+  </Provider>
 );
 
+/**
+ * Render the "App" component on the DOM container.
+ */
 const component     = {instance: null};
 component.instance  = <App/>;
 
@@ -64,4 +74,3 @@ container.selector          = '#root';
 container.instance.inTheDOM = document.querySelector(container.selector);
 
 ReactDOM.render(component.instance, container.instance.inTheDOM);
-// registerServiceWorker();
