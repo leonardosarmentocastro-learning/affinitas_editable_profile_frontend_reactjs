@@ -49,8 +49,7 @@ class SignUpFormStep1 extends Component {
         <SignUpFormButton
           isDisabled={form.isInvalid}
           onClick={goToNextStep}
-          text='Next'
-        />
+          text='Next'/>
       </form>
     );
 
