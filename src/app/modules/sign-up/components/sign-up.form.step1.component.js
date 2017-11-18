@@ -7,11 +7,23 @@ import { Field, reduxForm } from 'redux-form';
 /**
  * Project packages.
  */
+import sharedConstants            from './../../shared/constants/shared.constants';
+import SignUpFormButton           from './sign-up.form.button.component';
 import SignUpFormInputField       from './sign-up.form.input-field.component';
 import SignUpFormStep1Validator   from './../validators/sign-up.form.step1.validator';
 
 class SignUpFormStep1 extends Component {
   render() {
+    /** Extract custom props. */
+    const {goToNextStep} = this.props;
+
+    /** Extract redux form props. */
+    const {invalid} = this.props;
+
+    /** Set implementation specs. */
+    const form      = {isInvalid: null};
+    form.isInvalid  = invalid;
+
     const template = (
       <form>
         <Field
@@ -28,29 +40,17 @@ class SignUpFormStep1 extends Component {
           name='name.displayable'
           placeholder='Leonardo'/>
 
-        {/* required */}
-        {/* format: Does not match the "TODO" format. */}
-        {/* invalid-value: The provided date value is invalid */}
-        {/* ----- */}
-        {/* TODO: placeholder="{{ctrl.form.constants.format.forUserFriendly.date | lowercase}}" */}
-        {/* TODO: classNames: "-form-spacement bottom"
-          <div className="field -form-spacement bottom">
-            <label className="label"></label>
-            ...
-        */}
-        {/* <Field
-          component={this.renderInput}
-          isDisabled={true}
+        <Field
+          component={SignUpFormInputField}
           label='Date of birth'
           name='dateOfBirth'
-          placeholder='TODO'/> */}
+          placeholder={sharedConstants.format.forUserFriendly.date.toLowerCase()}/>
 
-        {/* TODO: Component shared between all sign-up form components. */}
-        <div className="field has-text-centered">
-          <button className="button -sign-up is-info is-outlined"
-          ng-click='ctrl.page.goTo.step2()'
-          ng-disabled='ctrl.step1form.$invalid'>Next</button>
-        </div>
+        <SignUpFormButton
+          isDisabled={form.isInvalid}
+          onClick={goToNextStep}
+          text='Next'
+        />
       </form>
     );
 
@@ -82,7 +82,7 @@ class SignUpFormStep1 extends Component {
 
 /** Creating the Redux form. */
 const options         = {
-  form: 'sign-up.form',
+  form: 'sign-up.form', // NOTE: Needs to be the same for all steps.
   validate: SignUpFormStep1Validator
 };
 const createReduxForm = reduxForm(options);

@@ -15,8 +15,8 @@ import ReduxPromise                     from 'redux-promise';
 /**
  * Project packages.
  */
-import FullHeightCenteredForm from './app/modules/shared/components/full-height-centered-form.component';
-import rootReducer            from './app/modules/core/reducers/core.root.reducer';
+import SharedFullHeightCenteredForm from './app/modules/shared/components/shared.full-height-centered-form.component';
+import rootReducer                  from './app/modules/core/reducers/core.root.reducer';
 
 /**
  * Styles.
@@ -57,7 +57,7 @@ const App = () => (
     <Router>
       <div className="full-height">
         <Route exact path='/' render={ () => (<Redirect to='/sign_up' />) } />
-        <Route exact path='/sign_up' component={FullHeightCenteredForm}/>
+        <Route exact path='/sign_up' component={SharedFullHeightCenteredForm}/>
       </div>
     </Router>
   </Provider>

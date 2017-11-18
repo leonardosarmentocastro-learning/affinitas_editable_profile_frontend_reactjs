@@ -13,7 +13,7 @@ import {
 import SignUp from './../../sign-up/components/sign-up.component';
 
 /**
- * Building the "FullHeightCenteredForm".
+ * Building the "SharedFullHeightCenteredForm".
  */
 const FullHeightContainer = (props) => (
   <section className='section is-flex full-height valign-center'>
@@ -49,7 +49,7 @@ const Content = () => (
   </Router>
 );
 
-const FullHeightCenteredForm = () => (
+const SharedFullHeightCenteredForm = () => (
   <FullHeightContainer>
     <WelcomeTitle />
 
@@ -59,4 +59,4 @@ const FullHeightCenteredForm = () => (
   </FullHeightContainer>
 );
 
-export default FullHeightCenteredForm;
+export default SharedFullHeightCenteredForm;

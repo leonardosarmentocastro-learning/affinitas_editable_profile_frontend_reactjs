@@ -15,11 +15,15 @@ class SignUpFormInputField extends Component {
     const shouldDisplayError  = Boolean(touched && error);
 
     /** Custom properties. */
-    const { isDisabled, label, placeholder } = this.props;
+    const {
+      isDisabled,
+      label,
+      placeholder
+    } = this.props;
 
     /** Describes the component template. */
     const template = (
-      <div className="field">
+      <div className='field'>
         <label className="label">{label}</label>
         <div className="control">
           <input
@@ -30,7 +34,7 @@ class SignUpFormInputField extends Component {
             {...input} />
 
           {shouldDisplayError &&
-          <Error error={error} />}
+          <InputError error={error} />}
         </div>
       </div>
     );
@@ -40,7 +44,7 @@ class SignUpFormInputField extends Component {
 }
 
 /** Functional component. */
-const Error = ({error}) => (
+const InputError = ({error}) => (
   <div>
     <p className="help is-danger">{error}</p>
   </div>

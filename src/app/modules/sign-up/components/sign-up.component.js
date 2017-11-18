@@ -21,8 +21,8 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
 
-    this.nextStep     = this.nextStep.bind(this);
-    this.previousStep = this.previousStep.bind(this);
+    this.goToNextStep     = this.goToNextStep.bind(this);
+    this.goToPreviousStep = this.goToPreviousStep.bind(this);
 
     this.state = {
       step: 1
@@ -33,8 +33,8 @@ class SignUp extends Component {
     /** Describe specs for the implementation. */
     const { step: currentStep } = this.state;
     const isOnStep1             = Boolean(currentStep === 1);
-    const isOnStep2             = Boolean(currentStep === 2);
-    const isOnStep3             = Boolean(currentStep === 3);
+    // const isOnStep2             = Boolean(currentStep === 2);
+    // const isOnStep3             = Boolean(currentStep === 3);
 
     /** Describe the component template. */
     const template = (
@@ -43,8 +43,7 @@ class SignUp extends Component {
 
         {isOnStep1 &&
         <SignUpFormStep1
-          nextStep={this.nextStep}
-          previousStep={this.previousStep}/>
+          goToNextStep={this.goToNextStep}/>
         }
 
         <LinkToAlreadyHaveAnAccount />
@@ -54,12 +53,12 @@ class SignUp extends Component {
     return template;
   }
 
-  nextStep() {
+  goToNextStep() {
     const { step: currentStep } = this.state;
     this.setState({step: (currentStep + 1)});
   }
 
-  previousStep() {
+  goToPreviousStep() {
     const { step: currentStep } = this.state;
     this.setState({step: (currentStep - 1)});
   }
