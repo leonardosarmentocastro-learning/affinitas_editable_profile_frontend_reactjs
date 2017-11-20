@@ -7,6 +7,7 @@ import { Field, reduxForm } from 'redux-form';
 /**
  * Project packages.
  */
+// import sharedValidations      from './../../shared/validations/shared.validations';
 import SignUpFormButton       from './sign-up.form.button.component';
 import SignUpFormSelectField  from './sign-up.form.select-field.component'
 
@@ -27,6 +28,9 @@ class SignUpFormStep2 extends Component {
     const form      = {isInvalid: null};
     form.isInvalid  = invalid;
 
+    /** TODO: make it work with "SignUpFormSelectField". */
+    // const { required } = sharedValidations;
+
     const template = (
       <form>
         <Field
@@ -34,6 +38,15 @@ class SignUpFormStep2 extends Component {
           label='Gender'
           listOfItems={genders}
           name='gender'
+        />
+
+        {/* TODO: height */}
+
+        <Field
+          component={SignUpFormSelectField}
+          label='Marital status'
+          listOfItems={maritalStatuses}
+          name='maritalStatus'
         />
 
         <div className="field has-text-centered">

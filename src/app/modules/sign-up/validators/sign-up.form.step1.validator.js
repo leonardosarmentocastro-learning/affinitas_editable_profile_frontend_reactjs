@@ -1,50 +1,22 @@
 /**
  * Project packages.
  */
-import sharedConstants from './../../shared/constants/shared.constants';
-import SharedValidator from './../../shared/validators/shared.validator';
+import sharedValidations from './../../shared/validations/shared.validations';
 
+/** Extract shared validation methods. */
+const { maxLength256 } = sharedValidations;
+
+/** Builds the validator. */
 const SignUpFormStep1Validator = values => {
-  const errors                = {name: {real: null}};
-  const { name, dateOfBirth } = values;
+  const errors    = {name: {real: null}};
+  const { name }  = values;
 
   /** @name name.real */
-  {
-    const constraint      = { maxlength: null };
-    constraint.maxlength  = 256;
+  const isEmpty               = !(name && name.real);
+  const hasExceededMaxLength  = (!isEmpty) && maxLength256(name.real);
 
-    /** Set validation specs. */
-    const isEmpty               = !(name && name.real);
-    const hasExceededMaxLength  =
-      (!isEmpty)
-      && Boolean(name.real.length > constraint.maxlength);
-
-    if (isEmpty) {
-      errors.name.real = 'This input is required.'; // TODO: Set the error messages in a single file?
-    } else if (hasExceededMaxLength) {
-      errors.name.real = 'Your name is too long.'; // TODO: Set the error messages in a single file?
-    }
-  }
-
-  /** @name dateOfBirth */
-  {
-    /** Set validation specs. */
-    const sharedValidator       = new SharedValidator();
-    const stringDate            = dateOfBirth;
-
-    const isEmpty               = !Boolean(dateOfBirth);
-    const isAnValidDateValue    = sharedValidator.validateDateValue(stringDate);
-    const isAnValidDatePattern  = sharedValidator.validateDatePattern(stringDate);
-    if (isEmpty) {
-      errors.dateOfBirth = 'This input is required.';
-    } else if (!isAnValidDateValue) {
-      errors.dateOfBirth = 'The provided date value is invalid.';
-    } else if (!isAnValidDatePattern) {
-      let format  = sharedConstants.format.forUserFriendly.date;
-      format      = format.toLowerCase();
-
-      errors.dateOfBirth = `Does not match the ${format} format.`;
-    }
+  if (hasExceededMaxLength) {
+    errors.name.real = 'Your name is too long.';
   }
 
   return errors;

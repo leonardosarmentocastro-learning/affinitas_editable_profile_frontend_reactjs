@@ -8,6 +8,7 @@ import { Field, reduxForm } from 'redux-form';
  * Project packages.
  */
 import sharedConstants            from './../../shared/constants/shared.constants';
+import sharedValidations          from './../../shared/validations/shared.validations';
 import SignUpFormButton           from './sign-up.form.button.component';
 import SignUpFormInputField       from './sign-up.form.input-field.component';
 import SignUpFormStep1Validator   from './../validators/sign-up.form.step1.validator';
@@ -24,6 +25,14 @@ class SignUpFormStep1 extends Component {
     const form      = {isInvalid: null};
     form.isInvalid  = invalid;
 
+    const { format } = sharedConstants;
+
+    const {
+      datePattern,
+      dateValue,
+      required
+    } = sharedValidations;
+
     const template = (
       <form>
         <Field
@@ -31,7 +40,8 @@ class SignUpFormStep1 extends Component {
           label='Full name'
           name='name.real'
           onChange={(event, newRealName) => this.setDisplayableName(newRealName)}
-          placeholder='Leonardo Sarmento de Castro'/>
+          placeholder='Leonardo Sarmento de Castro'
+          validate={[required]}/>
 
         <Field
           component={SignUpFormInputField}
@@ -44,7 +54,8 @@ class SignUpFormStep1 extends Component {
           component={SignUpFormInputField}
           label='Date of birth'
           name='dateOfBirth'
-          placeholder={sharedConstants.format.forUserFriendly.date.toLowerCase()}/>
+          placeholder={format.forUserFriendly.date.toLowerCase()}
+          validate={[required, datePattern, dateValue]}/>
 
         <div className="field has-text-centered">
           <SignUpFormButton
