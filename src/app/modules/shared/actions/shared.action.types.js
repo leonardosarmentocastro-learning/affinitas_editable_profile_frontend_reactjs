@@ -1,0 +1,2 @@
+export const FETCH_GENDERS           = 'FETCH_GENDERS';
+export const FETCH_MARITAL_STATUSES  = 'FETCH_MARITAL_STATUSES';

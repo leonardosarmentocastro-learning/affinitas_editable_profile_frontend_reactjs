@@ -46,10 +46,12 @@ class SignUpFormStep1 extends Component {
           name='dateOfBirth'
           placeholder={sharedConstants.format.forUserFriendly.date.toLowerCase()}/>
 
-        <SignUpFormButton
-          isDisabled={form.isInvalid}
-          onClick={goToNextStep}
-          text='Next'/>
+        <div className="field has-text-centered">
+          <SignUpFormButton
+            isDisabled={form.isInvalid}
+            onClick={goToNextStep}
+            text='Next'/>
+        </div>
       </form>
     );
 
@@ -82,6 +84,8 @@ class SignUpFormStep1 extends Component {
 /** Creating the Redux form. */
 const options         = {
   form: 'sign-up.form', // NOTE: Needs to be the same for all steps.
+  destroyOnUnmount: false, // NOTE: Preserve form data.
+  forceUnregisterOnUnmount: true,
   validate: SignUpFormStep1Validator
 };
 const createReduxForm = reduxForm(options);

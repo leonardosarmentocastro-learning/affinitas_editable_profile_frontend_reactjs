@@ -2,12 +2,18 @@
  * NPM packages,
  */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { connect }          from 'react-redux';
+import { Link }             from 'react-router-dom';
 
 /**
  * Project packages.
  */
-import SignUpFormStep1 from './sign-up.form.step1.component';
+import {
+  fetchGenders,
+  fetchMaritalStatuses
+} from './../../shared/actions/shared.action.functions';
+import SignUpFormStep1  from './sign-up.form.step1.component';
+import SignUpFormStep2  from './sign-up.form.step2.component';
 
 /**
  * Styles.
@@ -29,21 +35,33 @@ class SignUp extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.fetchGenders();
+    this.props.fetchMaritalStatuses();
+  }
+
   render() {
     /** Describe specs for the implementation. */
     const { step: currentStep } = this.state;
     const isOnStep1             = Boolean(currentStep === 1);
-    // const isOnStep2             = Boolean(currentStep === 2);
+    const isOnStep2             = Boolean(currentStep === 2);
     // const isOnStep3             = Boolean(currentStep === 3);
 
     /** Describe the component template. */
     const template = (
       <div>
-        <CurrentWizardStep step={currentStep}/>
+        <CurrentWizardStep step={currentStep} />
 
         {isOnStep1 &&
         <SignUpFormStep1
-          goToNextStep={this.goToNextStep}/>
+          goToNextStep={this.goToNextStep} />
+        }
+        {isOnStep2 &&
+          <SignUpFormStep2
+            genders={this.props.genders}
+            goToNextStep={this.goToNextStep}
+            goToPreviousStep={this.goToPreviousStep}
+            maritalStatuses={this.props.maritalStatuses}/>
         }
 
         <LinkToAlreadyHaveAnAccount />
@@ -81,4 +99,13 @@ const CurrentWizardStep = ({step}) => (
   </div>
 );
 
-export default SignUp;
+/** TODO */
+const mapStateToProps = (state) => {
+  const { genders, maritalStatuses }  = state;
+  const props                         = { genders, maritalStatuses };
+
+  return props;
+};
+const actionCreators  = { fetchGenders, fetchMaritalStatuses };
+const Container       = connect(mapStateToProps, actionCreators)(SignUp);
+export default Container;

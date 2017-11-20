@@ -1,4 +1,9 @@
 const sharedConstants = {
+  api: {
+    baseURL: null,
+    host: null,
+    port: null
+  },
   format: {
     forIsoDate: '',
     forUserFriendly: {
@@ -10,6 +15,17 @@ const sharedConstants = {
     forHeight: null
   }
 };
+
+/** Get the api's baseURL that will be used accross all http requests. */
+const http    = {protocol: null};
+http.protocol = window.location.protocol;
+
+const api   = {host: null, port: null};
+api.host    = '127.0.0.1'; // TODO: Set as environment variables.
+api.port    = '8080'; // TODO: Set as environment variables.
+api.baseURL = `${http.protocol}//${api.host}:${api.port}`;
+
+sharedConstants.api = api;
 
 /** ISODate format used by "moment.js". */
 sharedConstants.format.forIsoDate = 'MM-DD-YYYY';
